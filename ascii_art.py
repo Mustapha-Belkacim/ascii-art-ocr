@@ -1,4 +1,5 @@
 from PIL import Image, ImageFont, ImageDraw
+import pytesseract
 
 
 def string_to_bitmap(text, font_style='arialbd.ttf', font_weight=9):
@@ -37,3 +38,8 @@ def ascii_art_to_image(ascii_art, char='#'):
 def text_to_ascii_art(text, font_style='arialbd.ttf', font_weight=9):
 	bitmap = string_to_bitmap(text, font_style, font_weight)
 	return bitmap_to_ascii_art(bitmap)
+
+
+def ascii_art_to_text(ascii_art, char='#'):
+	image = ascii_art_to_image(ascii_art, char)
+	return pytesseract.image_to_string(image)
