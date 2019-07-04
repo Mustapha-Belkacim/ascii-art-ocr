@@ -20,3 +20,8 @@ def bitmap_to_ascii_art(bitmap):
 		line_list = [map_bit_to_char(bitmap, column, row) for column in range(bitmap.width)]
 		result += ''.join(line_list) + '\n'
 	return result
+
+
+def text_to_ascii_art(text, font_style='arialbd.ttf', font_weight=9):
+	bitmap = string_to_bitmap(text, font_style, font_weight)
+	return bitmap_to_ascii_art(bitmap)
