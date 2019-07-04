@@ -8,3 +8,15 @@ def string_to_bitmap(text, font_style='arialbd.ttf', font_weight=9):
 	draw = ImageDraw.Draw(image)
 	draw.text((0, 0), text, font=font)  # render the text to bitmap
 	return image
+
+
+def map_bit_to_char(image, column, row, char='#'):
+	return ' ' if image.getpixel((column, row)) else char
+
+
+def bitmap_to_ascii_art(bitmap):
+	result = ''
+	for row in range(bitmap.height):
+		line_list = [map_bit_to_char(bitmap, column, row) for column in range(bitmap.width)]
+		result += ''.join(line_list) + '\n'
+	return result
