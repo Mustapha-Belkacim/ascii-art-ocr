@@ -22,6 +22,18 @@ def bitmap_to_ascii_art(bitmap):
 	return result
 
 
+def ascii_art_to_image(ascii_art, char='#'):
+	lines = ascii_art.splitlines()
+	size = (len(lines[0]), len(lines))
+	image = Image.new( '1', size, "white") # Create a new white image
+	pixels = image.load() # Create the pixel map
+	for i in range(image.width):    # For every pixel:
+	    for j in range(image.height):
+	    	if lines[j][i] == char:
+	        	pixels[i, j] = 0  # Make that pixel black
+	return image
+
+
 def text_to_ascii_art(text, font_style='arialbd.ttf', font_weight=9):
 	bitmap = string_to_bitmap(text, font_style, font_weight)
 	return bitmap_to_ascii_art(bitmap)
